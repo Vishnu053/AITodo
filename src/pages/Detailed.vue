@@ -1,6 +1,6 @@
 <template>
   <q-page>
-      <div>hi</div>
+       <q-editor v-model="card.content" min-height="6rem" />
   </q-page>
 </template>
 
@@ -8,21 +8,12 @@
 export default {
   data () {
     return {
-      cards: [
-        {
-          title: 'Our Changing Planets',
-          author: 'Mohan'
-        },
-        {
-          title: 'Our Changing Planets',
-          author: 'Mohan'
-        },
-        {
-          title: 'Our Changing Planets',
-          author: 'Mohan'
-        }
-      ]
+      card: {}
     }
+  },
+  mounted () {
+    this.card = JSON.parse(localStorage.getItem('tmpnt'))
+    // localStorage.removeItem('tmpnt')
   }
 }
 </script>
