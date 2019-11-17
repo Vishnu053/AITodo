@@ -35,7 +35,7 @@ export default {
   data () {
     return {
       user: {
-        name: 'Mohan'
+        name: 'Vishnu'
       },
       tab: 'mails',
       leftDrawerOpen: false,
