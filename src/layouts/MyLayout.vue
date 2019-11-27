@@ -1,9 +1,9 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-page-container>
-      <keep-alive>
+      <!-- <keep-alive> -->
       <router-view />
-      </keep-alive>
+      <!-- </keep-alive> -->
     </q-page-container>
 
   </q-layout>

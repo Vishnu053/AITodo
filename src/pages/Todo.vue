@@ -58,9 +58,14 @@ export default {
     },
     newNote () {
       var an = JSON.parse(localStorage.getItem('AITDnotes'))
-      var anc = 'tdx-nt-' + parseInt(an.length + 1)
-      var tn = { id: anc, title: 'My Title', content: 'Lorem ipsum...' }
-      this.openNote(tn)
+      if (an == null) {
+        var tnn = { id: 'tdx-nt-1', title: 'My Title', content: 'Lorem ipsum...' }
+        this.openNote(tnn)
+      } else {
+        var anc = 'tdx-nt-' + parseInt(an.length + 1)
+        var tn = { id: anc, title: 'My Title', content: 'Lorem ipsum...' }
+        this.openNote(tn)
+      }
     },
     openNote (note) {
       localStorage.setItem('tmpnt', JSON.stringify(note))
