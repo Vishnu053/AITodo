@@ -54,7 +54,7 @@ export default {
   methods: {
     getNotes () {
       this.cards = JSON.parse(localStorage.getItem('AITDnotes'))
-      console.log(this.cards)
+      // console.log(this.cards)
     },
     newNote () {
       var an = JSON.parse(localStorage.getItem('AITDnotes'))
