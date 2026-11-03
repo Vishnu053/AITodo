@@ -3,14 +3,21 @@ on:
   push:
   pull_request:
 jobs:
-  test:
+  core-linux:
+    name: Core tests (Linux)
     runs-on: ubuntu-latest
-    strategy:
-      matrix: { tz: [UTC, America/Los_Angeles, Asia/Kolkata] }
-    env:
-      TZ: ${{ matrix.tz }}
+    container: swift:6.1
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 22 }
-      - run: npm test
+      - run: swift test
+        working-directory: Core
+  app-ios:
+    name: Core tests + iOS app build (macOS)
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+      - run: swift test
+        working-directory: Core
+      - run: brew install xcodegen && xcodegen
+      - name: Build for iOS Simulator
+        run: xcodebuild -project AIToDo.xcodeproj -scheme AIToDo -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build
