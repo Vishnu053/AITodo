@@ -1,34 +1,14 @@
 {
-  "name": "todo",
-  "version": "0.0.1",
-  "description": "AI assisted todo app",
-  "productName": "My Todo",
-  "cordovaId": "com.vmk.aitodo",
-  "capacitorId": "",
-  "author": "vmk1315 <mewbow1315@gmail.com>",
+  "name": "ai-todo",
+  "version": "1.0.0",
+  "description": "A minimal, proactive to-do app that remembers and recalls everything — including while you write a todo.",
   "private": true,
+  "type": "module",
   "scripts": {
-    "lint": "eslint --ext .js,.vue src",
-    "test": "echo \"No test specified\" && exit 0"
+    "start": "node server/server.js",
+    "dev": "node --watch server/server.js",
+    "test": "node --test \"test/*.test.js\""
   },
-  "dependencies": {
-    "@quasar/extras": "^1.0.0",
-    "quasar": "^1.0.0"
-  },
-  "devDependencies": {
-    "@quasar/app": "^1.0.0",
-    "@vue/eslint-config-standard": "^4.0.0",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.10.0",
-    "eslint-loader": "^2.1.1",
-    "eslint-plugin-vue": "^5.0.0"
-  },
-  "engines": {
-    "node": ">= 8.9.0",
-    "npm": ">= 5.6.0",
-    "yarn": ">= 1.6.0"
-  },
-  "browserslist": [
-    "last 1 version, not dead, ie >= 11"
-  ]
+  "engines": { "node": ">=20" },
+  "license": "MIT"
 }

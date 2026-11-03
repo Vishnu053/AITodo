@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AI Todo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="A minimal, proactive to-do app that remembers everything.">
+  <meta name="theme-color" content="#fbfaf8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#16181c" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+  <link rel="apple-touch-icon" href="icons/apple-icon-180x180.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1 id="greeting">Hello</h1>
+        <p id="date"></p>
+      </div>
+      <button id="menuBtn" class="icon" aria-label="Menu">⋯</button>
+    </header>
+
+    <form id="capture" autocomplete="off">
+      <input id="input" type="text" enterkeyhint="done" maxlength="500" placeholder="Write a todo, or type to recall…" aria-label="New todo or search your memory" autofocus>
+      <button type="submit" aria-label="Add todo">Add</button>
+    </form>
+    <div id="preview" class="chips" aria-live="polite"></div>
+    <section id="recall" aria-label="From your memory" hidden></section>
+
+    <section id="brief" aria-label="Heads up" hidden></section>
+    <div id="lists"></div>
+    <p id="empty" hidden>Nothing on your plate. Write a todo above — I'll remember it.</p>
+
+    <details id="doneBox" hidden>
+      <summary>Recently done <span id="doneCount"></span></summary>
+      <ul id="doneList" class="todos"></ul>
+    </details>
+  </main>
+
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+
+  <dialog id="editDlg" aria-labelledby="editTitle">
+    <form method="dialog" id="editForm">
+      <label>Todo <input name="title" required maxlength="200" id="editTitle"></label>
+      <label>Note <textarea name="note" rows="3" maxlength="1000"></textarea></label>
+      <div class="row">
+        <label>Date <input type="date" name="date"></label>
+        <label>Time <input type="time" name="time"></label>
+      </div>
+      <div class="row">
+        <label>Repeat
+          <select name="repeat">
+            <option value="">Never</option><option value="day">Daily</option><option value="weekdays">Weekdays</option>
+            <option value="week">Weekly</option><option value="month">Monthly</option>
+          </select>
+        </label>
+        <label>Priority
+          <select name="priority"><option value="0">Normal</option><option value="1">High</option><option value="2">Urgent</option></select>
+        </label>
+      </div>
+      <label>Tags <input name="tags" placeholder="home, errands" maxlength="120"></label>
+      <p id="editHistory" class="muted"></p>
+      <div class="actions">
+        <button type="button" id="editDelete" class="danger">Delete</button>
+        <span class="spacer"></span>
+        <button type="button" id="editCancel">Cancel</button>
+        <button type="submit" class="primary" value="save">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="menuDlg" aria-label="Settings">
+    <div class="menu">
+      <p id="aiStatus" class="muted"></p>
+      <label class="check"><input type="checkbox" id="aiToggle"> Use AI to refine todos &amp; brief me</label>
+      <label class="check"><input type="checkbox" id="notifyToggle"> Reminders (notifications)</label>
+      <label id="tokenRow" hidden>Access token <input type="password" id="tokenInput" autocomplete="off"></label>
+      <p class="muted" id="stats"></p>
+      <div class="actions">
+        <button type="button" id="exportBtn">Export</button>
+        <button type="button" id="importBtn">Import</button>
+        <input type="file" id="importFile" accept="application/json" hidden>
+        <span class="spacer"></span>
+        <button type="button" id="menuClose" class="primary">Done</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
